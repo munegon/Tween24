@@ -1320,7 +1320,12 @@ package a24.tween
 				}
 				// Update child tween
 				else {
+					// Avoid being added during the update
+					var stwList:Tween24 = [];
 					for each (var stw:Tween24 in _playingChildTweens) {
+						stwList.push(stw);
+					}
+					for each (stw in stwList) {
 						stw.update();
 					}
 				}
@@ -1354,7 +1359,14 @@ package a24.tween
 				}
 				// Update child tween
 				else {
-					for each (ptw in _playingChildTweens) ptw.update();
+					// Avoid being added during the update
+					var ptwList:Tween24 = [];
+					for each (ptw in _playingChildTweens) {
+						ptwList.push(ptw);
+					}
+					for each (ptw in ptwList) {
+						ptw.update();
+					}
 				}
 				
 				// onUpdate
